@@ -204,7 +204,7 @@ const Header = ({ activeSection }) => {
             <p className="text-[11px] uppercase tracking-[0.2em] text-[#6B7280]">
               Convite de casamento
             </p>
-            <p className="text-sm font-semibold text-slate-900">
+            <p className="text-sm font-semibold text-slate-900 cerifat">
               {weddingInfo.coupleNames}
             </p>
           </div>
@@ -515,24 +515,23 @@ const StoryCarousel = () => {
     </div>
   );
 };
-
 const Schedule = () => {
   return (
     <motion.section
       id="schedule"
-      className="rounded-3xl border border-[#E5E7EB] bg-white/80 p-6 shadow-md shadow-slate-200/70 backdrop-blur-xl sm:p-8"
+      className="rounded-3xl border border-[#E5E7EB] bg-white/80 p-4 shadow-md shadow-slate-200/70 backdrop-blur-xl sm:p-6"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">
             Cronograma do dia
           </h2>
           <p className="text-xs text-[#6B7280] sm:text-sm">
-            Para você aproveitar cada momento com calma.
+            Para você aproveitar cada momento.
           </p>
         </div>
         <div className="hidden rounded-full bg-[#EFF6FF] px-3 py-1 text-xs text-[#1D4ED8] sm:inline-flex">
@@ -541,27 +540,25 @@ const Schedule = () => {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 max-w-xl mx-auto">
         {[
           {
-            time: "16h00",
-            title: "Recepção dos convidados",
-            desc: "Chegada, boas-vindas e um tempinho para fotos.",
-          },
-          {
-            time: weddingInfo.time,
+            time: "17h00",
             title: "Cerimônia",
             desc: "O momento do sim, com muita emoção e amor.",
           },
           {
-            time: "17h30",
-            title: "Festa & jantar",
-            desc: "Comemoração, música, comida boa e muita alegria.",
+            time: "18h30",
+            title: "Despedida",
+            desc: "O momento de encerramento da celebração.",
           },
         ].map((item) => (
           <motion.div
             key={item.title}
-            whileHover={{ y: -4, boxShadow: "0 14px 30px rgba(148, 163, 184, 0.35)" }}
+            whileHover={{
+              y: -4,
+              boxShadow: "0 14px 30px rgba(148, 163, 184, 0.35)",
+            }}
             className="rounded-2xl bg-[#FFFBF2] p-4 text-sm text-slate-900"
           >
             <div className="mb-2 flex items-center gap-2 text-xs text-[#6B7280]">
