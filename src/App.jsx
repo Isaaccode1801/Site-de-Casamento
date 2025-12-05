@@ -12,12 +12,19 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import ft1 from "./assets/ft1.jpeg";
+import ft2 from "./assets/ft2.jpeg";
+import ft3 from "./assets/ft3.jpeg";
+import ft4 from "./assets/ft4.jpeg";
+import ft5 from "./assets/ft5.png";
+import rua from "./assets/rua.png";
+import { div } from "framer-motion/client";
+
 
 const SECTIONS = [
-  { id: "story", label: "Nossa história" },
+  { id: "top", label: "Inicio" },
   { id: "schedule", label: "Cronograma" },
   { id: "location", label: "Local" },
-  { id: "gifts", label: "Presentes" },
   { id: "rsvp", label: "Confirmação" },
 ];
 
@@ -33,9 +40,10 @@ const COLORS = {
 };
 
 // Dados básicos do casamento – personalize aqui
+
 const weddingInfo = {
   coupleNames: "Sandra & Juliano",
-  date: "10 de Dezembro de 2025",
+  date: "7 de Dezembro de 2025",
   time: "16h30",
   locationName: "Rua Comerciante Ananias Nascimento",
   locationCity: "Aracaju – SE",
@@ -47,17 +55,27 @@ const weddingInfo = {
 const heroCarouselImages = [
   {
     id: 1,
-    url: "https://i.pinimg.com/originals/29/1a/ec/291aec74c902e68755661a87b63a1c05.jpg",
+    url: ft5,
     alt: "Casal sorrindo ao pôr do sol",
   },
   {
     id: 2,
-    url: "https://i.pinimg.com/originals/06/63/75/066375bff18f429c69cd07872a542797.jpg",
+    url: ft2,
     alt: "Momento romântico em meio à natureza",
   },
   {
     id: 3,
-    url: "https://cdn.alboompro.com/5e9f78bee716a10001d859c6_62047a31a8bc470001963d0d/original_size/pre-casamento-look.jpg?v=1",
+    url: ft3,
+    alt: "Casal caminhando de mãos dadas",
+  },
+    {
+    id: 4,
+    url: ft4,
+    alt: "Casal caminhando de mãos dadas",
+  },
+    {
+    id: 5,
+    url: ft1,
     alt: "Casal caminhando de mãos dadas",
   },
 ];
@@ -106,8 +124,9 @@ const App = () => {
     const name = formData.get("name")?.toString() || "";
     const guests = formData.get("guests")?.toString() || "1";
     const message = formData.get("message")?.toString() || "";
+    const dish = formData.get("dish")?.toString() || "";
 
-    const text = `Olá, somos convidados para o casamento!\n\nNome: ${name}\nNúmero de pessoas: ${guests}\nMensagem: ${message}`;
+    const text = `Olá, somos convidados para o casamento!\n\nNome: ${name}\nNúmero de pessoas: ${guests}\nPrato que vamos levar: ${dish || "não informado"}\n\nSe possível, vamos levar um prato de comida para tornar essa noite ainda mais especial.\n\nMensagem: ${message}`;
     const encoded = encodeURIComponent(text);
     window.open(
       `https://wa.me/${weddingInfo.rsvpWhatsApp}?text=${encoded}`,
@@ -116,7 +135,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    const sectionIds = ["story", "schedule", "location", "gifts", "rsvp"];
+    const sectionIds = ["top", "schedule", "location", "rsvp"];
     const handler = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -408,43 +427,11 @@ const HeroCarousel = () => {
 const Story = () => {
   return (
     <motion.section
-      id="story"
-      className="rounded-3xl border border-[#E5E7EB] bg-white/80 p-6 shadow-md shadow-slate-200/70 backdrop-blur-xl sm:p-8"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
+
     >
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">
-            Nossa história
-          </h2>
-          <p className="text-xs text-[#6B7280] sm:text-sm">
-            Um álbum de momentos especiais até o “sim”.
-          </p>
-        </div>
-        <span className="rounded-full bg-[#FFFBF2] px-3 py-1 text-[11px] font-medium text-[#92400E]">
-          Passe as fotos para ver mais
-        </span>
-      </div>
 
-      <div className="grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-stretch">
-        <StoryCarousel />
 
-        <div className="space-y-3">
-          <div className="rounded-2xl border border-[#E5E7EB] bg-[#FFFBF2] p-3 text-xs text-[#6B7280]">
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">
-              Álbum da nossa história
-            </p>
-            <p>
-              Cada foto guarda um pedacinho da nossa jornada: dos primeiros encontros
-              tímidos até o pedido de casamento cheio de emoção.
-            </p>
-          </div>
 
-        </div>
-      </div>
     </motion.section>
   );
 };
@@ -557,7 +544,7 @@ const Schedule = () => {
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
         {[
           {
-            time: "15h30",
+            time: "16h00",
             title: "Recepção dos convidados",
             desc: "Chegada, boas-vindas e um tempinho para fotos.",
           },
@@ -642,7 +629,11 @@ const Location = () => {
         </div>
         <div className="relative h-52 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-[#EFF6FF]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.25),_transparent)]" />
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP0zy4lui5A2vyVdzPkqnGqhlV5a8EyiCVFw&s" alt="" />
+            <img
+      src={rua}
+      alt="Rua Comerciante Ananias Nascimento"
+      className="h-full w-full object-cover"
+    />
         </div>
       </div>
     </motion.section>
@@ -651,75 +642,7 @@ const Location = () => {
 
 const Gifts = () => {
   return (
-    <motion.section
-      id="gifts"
-      className="rounded-3xl border border-[#E5E7EB] bg-white/80 p-6 shadow-md shadow-slate-200/70 backdrop-blur-xl sm:p-8"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 className="text-lg font-semibold text-slate-900 sm:text-xl">
-            Lista de presentes
-          </h2>
-          <p className="text-xs text-[#6B7280] sm:text-sm">
-            Sua presença é o que mais importa, mas se quiser nos presentear:
-          </p>
-        </div>
-        <div className="flex items-center gap-2 rounded-full bg-[#EFF6FF] px-4 py-2 text-xs text-[#1D4ED8]">
-          <Gift className="h-3 w-3" />
-          <span>Pix + lista online</span>
-        </div>
-      </div>
-
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        <motion.div
-          whileHover={{ y: -4, boxShadow: "0 14px 30px rgba(148, 163, 184, 0.35)" }}
-          className="rounded-2xl bg-[#FFFBF2] p-4 text-sm"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">
-            Pix
-          </p>
-          <p className="mt-2 text-slate-900">
-            Chave: <span className="font-semibold">892.802.025-53</span>
-          </p>
-          <p className="mt-1 text-xs text-[#6B7280]">
-            Fique à vontade para contribuir com qualquer valor.
-          </p>
-        </motion.div>
-        <motion.div
-          whileHover={{ y: -4, boxShadow: "0 14px 30px rgba(148, 163, 184, 0.35)" }}
-          className="rounded-2xl bg-[#FFFBF2] p-4 text-sm"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">
-            Lista em loja
-          </p>
-          <p className="mt-2 text-slate-900">
-            Loja Exemplo • C&A / Magalu / etc.
-          </p>
-          <p className="mt-1 text-xs text-[#6B7280]">
-            Link da lista:{" "}
-            <span className="underline underline-offset-2 text-[#2563EB]">
-              loja.com/lista-sandra-juliano
-            </span>
-          </p>
-        </motion.div>
-        <motion.div
-          whileHover={{ y: -4, boxShadow: "0 14px 30px rgba(148, 163, 184, 0.35)" }}
-          className="rounded-2xl bg-[#FFFBF2] p-4 text-sm"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">
-            Presente em experiência
-          </p>
-          <p className="mt-2 text-slate-900">
-            Você também pode nos presentear com uma viagem, jantar ou
-            experiência inesquecível.
-          </p>
-        </motion.div>
-      </div>
-    </motion.section>
+    <motion.section></motion.section>
   );
 };
 
@@ -739,7 +662,7 @@ const RSVPSection = ({ onSubmit }) => {
             Confirmação de presença
           </h2>
           <p className="text-xs text-[#6B7280] sm:text-sm">
-            Preencha rapidinho para nos ajudar na organização 💌
+            Preencha rapidinho para nos ajudar na organização 💌 Se possível, leve um prato de comida para tornar nossa noite mais especial.
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-full bg-[#FDE68A]/40 px-4 py-2 text-xs text-[#B45309]">
@@ -778,6 +701,16 @@ const RSVPSection = ({ onSubmit }) => {
               <option value="3">Eu + 2 acompanhantes</option>
               <option value="4">Eu + família</option>
             </select>
+          </div>
+          <div className="space-y-1 text-sm">
+            <label className="text-xs font-medium text-slate-800">
+              Prato que você pretende levar
+            </label>
+            <input
+              name="dish"
+              className="w-full rounded-2xl border border-[#E5E7EB] bg-[#FFFBF2] px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+              placeholder="Ex: lasanha, salada, sobremesa..."
+            />
           </div>
           <div className="space-y-1 text-sm">
             <label className="text-xs font-medium text-slate-800">
